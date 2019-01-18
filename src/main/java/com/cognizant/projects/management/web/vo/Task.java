@@ -7,4 +7,6 @@ public class Task {
     private String  startDate;
 
     private String endDate;
+
+    private Project project;
 }
