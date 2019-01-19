@@ -1,8 +1,15 @@
 package com.cognizant.projects.management.web.vo;
 
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class User {
 
-    private String userId;
+    private int userId;
 
     private String firstName;
 
@@ -10,9 +17,9 @@ public class User {
 
     private String employeeId;
 
-    private String projectId;
+    private int projectId;
 
-    private String taskId;
+    private int taskId;
 
-    private Project project;
+    private int empId;
 }
