@@ -20,18 +20,18 @@ public class DomainToDAO {
     public User getUser(com.cognizant.projects.management.web.vo.User user){
         User userdao = new User();
         userdao.setUser_ID(user.getUserId());
-        userdao.setFirst_Name(user.getFirstName());
-        userdao.setLast_Name(user.getLastName());
-        userdao.setEmployee_ID(user.getEmpId());
+        userdao.setFirstName(user.getFirstName());
+        userdao.setLastName(user.getLastName());
+        userdao.setEmployeeId(user.getEmpId());
         userdao.setTask_ID(user.getTaskId());
         userdao.setProject_ID(user.getProjectId());
         return userdao;
     }
 
     public User getUser(com.cognizant.projects.management.web.vo.User user, User dbUser){
-        dbUser.setFirst_Name(user.getFirstName());
-        dbUser.setLast_Name(user.getLastName());
-        dbUser.setEmployee_ID(user.getEmpId());
+        dbUser.setFirstName(user.getFirstName());
+        dbUser.setLastName(user.getLastName());
+        dbUser.setEmployeeId(user.getEmpId());
         dbUser.setTask_ID(user.getTaskId());
         dbUser.setProject_ID(user.getProjectId());
         return dbUser;

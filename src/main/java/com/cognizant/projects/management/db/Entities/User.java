@@ -15,9 +15,9 @@ import javax.persistence.Id;
 public class User {
     @Id
     private int User_ID;
-    private String First_Name;
-    private String Last_Name;
-    private int Employee_ID;
+    private String firstName;
+    private String lastName;
+    private int employeeId;
     private int Task_ID;
     private int Project_ID;
 }

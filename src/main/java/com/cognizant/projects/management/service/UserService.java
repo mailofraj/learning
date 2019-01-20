@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,4 +63,22 @@ public class UserService {
         }
         return isSucess;
     }
+
+    public List<com.cognizant.projects.management.db.Entities.User > getUsers() throws ServiceException {
+        boolean isSucess=false;
+        List<com.cognizant.projects.management.db.Entities.User > userlist=new ArrayList();
+        try {
+         for( com.cognizant.projects.management.db.Entities.User u :userRepository.findAll()){
+             userlist.add(u);
+         }
+
+
+            isSucess=true;
+        }catch(Exception e){
+            log.error("Excception Occured while updating user",e);
+            throw new ServiceException(e.getMessage());
+        }
+        return userlist;
+    }
+
 }
