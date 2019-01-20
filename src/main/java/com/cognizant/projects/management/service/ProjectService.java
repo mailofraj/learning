@@ -9,6 +9,8 @@ import com.cognizant.projects.management.web.vo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -30,6 +32,19 @@ public class ProjectService {
 
     @Autowired
     private UserService userService;
+
+
+    public List<com.cognizant.projects.management.web.vo.Project> getProjects() throws ServiceException {
+        List<com.cognizant.projects.management.web.vo.Project> projects=null;
+        try {
+            Iterable<Project> all = projectRepository.findAll();
+            projects = daoToDomain.getProjects(all);
+        } catch (Exception e) {
+            log.error("Exception occurred in add task", e);
+            throw new ServiceException(e.getMessage());
+        }
+        return projects;
+    }
 
     public boolean addProject(com.cognizant.projects.management.web.vo.Project project) throws ServiceException {
         boolean isSuccess = false;

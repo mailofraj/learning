@@ -33,7 +33,7 @@ public class TaskController {
         return new ResponseEntity<>(isSucess, HttpStatus.OK);
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/updateTask")
+    @RequestMapping(method=RequestMethod.PUT, value="/updateTask")
     @CrossOrigin("*")
     @Transactional
     public ResponseEntity<Boolean> updateTask(@RequestBody Task task){

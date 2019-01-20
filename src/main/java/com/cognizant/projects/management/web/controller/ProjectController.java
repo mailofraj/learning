@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Controller handles the context path "/projmgmt"
  *
@@ -24,6 +26,22 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
+
+
+    @RequestMapping(method= RequestMethod.GET,value = "/getProjects")
+    @CrossOrigin("*")
+    @Transactional
+    public ResponseEntity<List<Project>> getProjects(){
+        List<Project> projects =null;
+        boolean isSucess = false;
+        try {
+            projects = projectService.getProjects();
+        }catch(ServiceException se){
+            log.error("Service Exception occurred",se);
+            return new ResponseEntity<List<Project>>(projects, HttpStatus.SERVICE_UNAVAILABLE);
+        }
+        return new ResponseEntity<>(projects, HttpStatus.OK);
+    }
 
 
     @RequestMapping(method= RequestMethod.POST,value = "/addProject")
