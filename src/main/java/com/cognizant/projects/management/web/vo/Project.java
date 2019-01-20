@@ -15,4 +15,5 @@ public class Project {
     private Timestamp startDate;
     private Timestamp endDate;
     private int priority;
+    private User user;
 }

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class TaskController {
 
     @RequestMapping(method= RequestMethod.POST,value = "/addTask")
     @CrossOrigin("*")
+    @Transactional
     public ResponseEntity<Boolean> addTask(@RequestBody Task task){
         boolean isSucess = false;
         try {
@@ -33,6 +35,7 @@ public class TaskController {
 
     @RequestMapping(method=RequestMethod.POST, value="/updateTask")
     @CrossOrigin("*")
+    @Transactional
     public ResponseEntity<Boolean> updateTask(@RequestBody Task task){
         boolean isSucess = false;
         try {
@@ -46,6 +49,7 @@ public class TaskController {
 
     @RequestMapping(method=RequestMethod.DELETE, value="/deleteTask/{id}")
     @CrossOrigin("*")
+    @Transactional
     public ResponseEntity<Boolean> deleteTask(@PathVariable int id){
         boolean isSucess = false;
         try {
@@ -59,6 +63,7 @@ public class TaskController {
 
     @RequestMapping(method=RequestMethod.GET, value="/getTasks/{id}")
     @CrossOrigin("*")
+    @Transactional
     public ResponseEntity<List<Task>> getTasks(@PathVariable int id){
         boolean isSucess = false;
         List<Task> taskList = null;

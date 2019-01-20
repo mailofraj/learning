@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -27,6 +28,7 @@ public class ProjectController {
 
     @RequestMapping(method= RequestMethod.POST,value = "/addProject")
     @CrossOrigin("*")
+    @Transactional
     public ResponseEntity<Boolean> addProject(@RequestBody Project project){
         boolean isSucess = false;
         try {
@@ -40,6 +42,7 @@ public class ProjectController {
 
     @RequestMapping(method=RequestMethod.PUT, value="/updateProject")
     @CrossOrigin("*")
+    @Transactional
     public ResponseEntity<Boolean> updateProject(@RequestBody Project project){
         boolean isSucess = false;
         try {
@@ -53,6 +56,7 @@ public class ProjectController {
 
     @RequestMapping(method=RequestMethod.DELETE, value="/deleteProject/{id}")
     @CrossOrigin("*")
+    @Transactional
     public ResponseEntity<Boolean> deleteProject(@PathVariable int id){
         boolean isSucess = false;
         try {

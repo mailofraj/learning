@@ -13,4 +13,5 @@ public class Task {
     private Timestamp endDate;
     private int priority;
     private int status;
+    private User user;
 }

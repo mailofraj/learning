@@ -23,59 +23,57 @@ public class UserService {
     private UserRepository userRepository;
 
     public boolean addUser(User user) throws ServiceException {
-        boolean isSucess=false;
+        boolean isSucess = false;
         com.cognizant.projects.management.db.Entities.User dbUser = domainToDAO.getUser(user);
         try {
             com.cognizant.projects.management.db.Entities.User save = userRepository.save(dbUser);
-            isSucess=true;
-        }catch(Exception e){
-            log.error("Excception Occured while saving user",e);
+            isSucess = true;
+        } catch (Exception e) {
+            log.error("Excception Occured while saving user", e);
             throw new ServiceException(e.getMessage());
         }
         return isSucess;
     }
 
     public boolean updateUser(User user) throws ServiceException {
-        boolean isSucess=false;
+        boolean isSucess = false;
         try {
             Optional<com.cognizant.projects.management.db.Entities.User> byId = userRepository.findById(user.getUserId());
-            if(byId.isPresent()){
+            if (byId.isPresent()) {
                 com.cognizant.projects.management.db.Entities.User dbUser = byId.get();
                 domainToDAO.getUser(user, dbUser);//rely on side effect
                 com.cognizant.projects.management.db.Entities.User save = userRepository.save(dbUser);
-                isSucess=true;
+                isSucess = true;
             }
-        }catch(Exception e){
-            log.error("Excception Occured while updating user",e);
+        } catch (Exception e) {
+            log.error("Excception Occured while updating user", e);
             throw new ServiceException(e.getMessage());
         }
         return isSucess;
     }
 
     public boolean deleteUser(int id) throws ServiceException {
-        boolean isSucess=false;
+        boolean isSucess = false;
         try {
             userRepository.deleteById(id);
-            isSucess=true;
-        }catch(Exception e){
-            log.error("Excception Occured while updating user",e);
+            isSucess = true;
+        } catch (Exception e) {
+            log.error("Excception Occured while updating user", e);
             throw new ServiceException(e.getMessage());
         }
         return isSucess;
     }
 
-    public List<com.cognizant.projects.management.db.Entities.User > getUsers() throws ServiceException {
-        boolean isSucess=false;
-        List<com.cognizant.projects.management.db.Entities.User > userlist=new ArrayList();
+    public List<com.cognizant.projects.management.db.Entities.User> getUsers() throws ServiceException {
+        boolean isSucess = false;
+        List<com.cognizant.projects.management.db.Entities.User> userlist = new ArrayList();
         try {
-         for( com.cognizant.projects.management.db.Entities.User u :userRepository.findAll()){
-             userlist.add(u);
-         }
-
-
-            isSucess=true;
-        }catch(Exception e){
-            log.error("Excception Occured while updating user",e);
+            for (com.cognizant.projects.management.db.Entities.User u : userRepository.findAll()) {
+                userlist.add(u);
+            }
+            isSucess = true;
+        } catch (Exception e) {
+            log.error("Excception Occured while updating user", e);
             throw new ServiceException(e.getMessage());
         }
         return userlist;
